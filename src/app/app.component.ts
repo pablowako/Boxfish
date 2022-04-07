@@ -17,18 +17,12 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
   this.getIP()
-  console.log()
-  this.test()
   }
 
-  test():void{
-    fetch("http://api.ipify.org/?format=json").then(rep => rep.json()).then(string =>{
-      console.log(string)
-    }).catch((err)=>{console.log(err)})
-  }
   getIP() :void{
     this.dataService.getIP().subscribe((ans:any)=>{
       this.ip = ans.ip
+      console.log(this.ip)
     })
   }
 }
