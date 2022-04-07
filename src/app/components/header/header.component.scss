@@ -32,10 +32,10 @@
             left: -10%
             
         }
+        padding: 1em 0;
 
         @include wrap(95%, 2500px, center);
         @include flex(row, nowrap, space-between, flex-start);
-        padding: 1em 0;
     }
 
     &__logo {
