@@ -2,7 +2,10 @@
 
 .footer {
     @include wrap(95%, 1500px, center);
-    margin: 12em auto;
+    margin: 10vw auto;
+    @media screen and (max-width:640px) {
+        width: 90%;
+    }
     &__cont {
     }
     &__grid {
@@ -18,6 +21,9 @@
     }
     &__img {
         max-width: 5em;
+        @media screen and (max-width:640px) {
+            max-width: 10em;
+        }
         filter: contrast(.2);
         @media (prefers-color-scheme: dark) {
             filter: invert(1) contrast(.5);

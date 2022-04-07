@@ -43,7 +43,7 @@
         margin-right: 3rem;
     }
     &__svg {
-        width: 5rem;
+        width: 4rem;
     }
     &__h1 {
         margin: 0 .5em;
@@ -57,7 +57,7 @@
     }
     &__title{
         @include flex(row, nowrap, flex-start, center);
-        margin: 1em 0;
+        margin: 1.5em 0;
     }
 }
 .contact {
@@ -204,7 +204,7 @@
     }
 }
 .spacer{
-    height: 9em; // 3em * 2 for header's margin, 3 em for lettering
+    height: 8.5em; 
 }
 .overlay{
     pointer-events: none;
