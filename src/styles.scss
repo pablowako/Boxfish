@@ -7,6 +7,8 @@
     --c-linea         : #E5E5E5;
     --c-fondo         : #fff;
 
+
+
     --tipo-principal  : 'Inter', sans-serif;;
   }
     
@@ -93,6 +95,7 @@
   }
   
   body {
+      background: var(--c-fondo);
     min-height  : 100vh;
     font-size   : 100%;
     font-family : var(--tipo-principal);

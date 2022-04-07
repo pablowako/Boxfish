@@ -1,0 +1,45 @@
+@mixin wrap ($width, $maxwidth, $center-vert){
+	width: 		$width;
+	max-width: 	$maxwidth;
+	margin: 	auto;
+	@include flex (row, nowrap, $center-vert, center);
+}
+
+@mixin flex-center(){
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+@mixin flex($direction, $wrap, $justify, $align) {
+    display: flex;
+    flex-flow: $direction $wrap;
+    justify-content: $justify;
+    @if $wrap == "nowrap" {
+    align-items: $align;
+    } @else {
+    align-content: $align;
+    align-items: $align;
+    }
+}
+
+@mixin position($type, $y, $ynum, $x, $xnum) {
+	position: $type;
+	@if $y == "top" {
+		top: $ynum;
+	} @else {
+		bottom: $ynum;
+	}
+	@if $x == "left" {
+		left: $xnum;
+	} @else {
+		right: $xnum;
+	}
+}
+@mixin grid($gap, $col, $row:1){
+	display: grid;
+	gap: $gap;
+	grid-template-columns: repeat($col, 1fr);
+	grid-template-rows: repeat($row, 1fr);
+}

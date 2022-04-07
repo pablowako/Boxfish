@@ -1,0 +1,38 @@
+@import 'mixins';
+
+.hero {
+    margin-top: 3em;
+    @media screen and (max-width: 840px) {
+        margin-top: 1em;
+    }
+    &__container {
+        @include wrap(95%, 2500px, center);
+        @include grid(2em, 2, 1);
+        @media screen and (max-width: 840px) {
+            @include grid(2em, 1);
+        }
+    }
+    &__column {
+        // max-width: 50%;
+    }
+    &__section {
+    }
+    &__h2 {
+        font-size: 3.5em;
+        font-weight: 700;
+        margin: 1em 0;
+        line-height: 1;
+        em{
+            color: var(--c-acento-2);
+        }
+        @media screen and (max-width: 720px) {
+            font-size: 2em;
+        }
+    }
+    &__p {
+        color: var(--c-subtexto);
+        font-weight: 600;
+    }
+    &__img {
+    }
+}

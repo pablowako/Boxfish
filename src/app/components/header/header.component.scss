@@ -1,0 +1,222 @@
+@import 'mixins';
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    background-color: var(--c-fondo);
+    @include flex(column, nowrap, flex-start, center);
+    &::after{
+        content: '';
+        display: block;
+        width: 100vw;
+        height: 1px;
+        background-color: var(--c-linea);
+        position: absolute;
+        bottom: 0;
+        left: -0%
+        
+    }
+    &__container{
+        position: relative;
+        &::after{
+            content: '';
+            display: block;
+            width: 150vw;
+            height: 1px;
+            background-color: var(--c-linea);
+            position: absolute;
+            bottom: 0;
+            left: -10%
+            
+        }
+
+        @include wrap(95%, 2500px, center);
+        @include flex(row, nowrap, space-between, flex-start);
+        padding: 1em 0;
+    }
+
+    &__logo {
+        @include flex(row, nowrap, flex-start, center);
+        margin-right: 3rem;
+    }
+    &__svg {
+        width: 5rem;
+    }
+    &__h1 {
+        margin: 0 .5em;
+    }
+    &__name{
+        font-weight: 600;
+        font-size: 1.2em;
+        text-transform: uppercase;
+    }
+    &__sub {
+    }
+    &__title{
+        @include flex(row, nowrap, flex-start, center);
+        margin: 1em 0;
+    }
+}
+.contact {
+    
+    &__pc {
+        @include flex-center();
+        @media screen and (max-width:968px) {
+            display: none;
+            
+        }
+    }
+    &__movil{
+        display: none;
+        width: 100%;
+        z-index: 1;
+        @media screen and (max-width:640px) {
+            @include flex(row, nowrap, center, center);
+            position: relative;
+            &::after{
+                content: '';
+                display: block;
+                width: 100vw;
+                height: 1px;
+                background: var(--c-linea);
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+            & .contact__li{
+                @include flex( row, nowrap ,center , center );
+
+                &:not(:first-child){
+                    &::before{
+                        content: '';
+                        width: 5px;
+                        height: 5px;
+                        border-radius: 50%;
+                        background-color: var(--c-acento-2);
+                        display: flex;
+                        margin: 0 .5rem;
+                    }
+                }
+            }
+            & .contact__a{
+                &::after{
+                    display: none;
+                }
+            }
+        }
+    }
+    &__li {
+    }
+    &__a {
+        padding: 1em .75em;
+        margin: 0 .25em;
+        color: var(--c-acento-1);
+        transition: .3s ease all;
+        position: relative;
+        &::after{
+            content: "";
+            width: 0%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background-color: var(--c-acento-1);
+            transition: .3s ease all;
+            opacity: .7;
+        }
+        &:hover::after{
+            width: 100%;
+        }
+    }
+}
+.menu{
+    // position: relative;
+    margin: 2em 0;
+    &__hamb{
+        display: none;
+        color: var(--c-acento-1);
+        font-weight: 500;
+        font-size: 1.5rem;
+        @media screen and (max-width: 640px) {
+            @include flex-center();
+
+        }
+    }
+    &__svg{
+        width: 2rem;
+    }
+    &__pc {
+        @include flex-center();
+        @media screen and (max-width: 640px) {
+            display: none;
+        }
+    }
+    &__movil{
+        display: none;
+        @media screen and (max-width: 640px) {
+            @include flex(column, nowrap, center, flex-end);
+            pointer-events: none;
+            transition: .5s ease all;
+            max-height: 0vh;
+            width: 100vw;
+            background-color: var(--c-fondo);
+            overflow: hidden;
+            z-index: 2;
+            &.active{
+                pointer-events: auto;
+                max-height: 60vh;
+            }
+        }
+
+    }
+    &__li {
+        line-height: 1;
+    }
+    &__a {
+        padding: 1em .75em;
+        margin: 0 .25em;
+        color: var(--c-acento-1);
+        transition: .3s ease all;
+        position: relative;
+        &::after{
+            content: "";
+            width: 0%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background-color: var(--c-acento-1);
+            transition: .3s ease all;
+            opacity: .7;
+        }
+        &:hover::after{
+            width: 100%;
+        }
+        @media screen and (max-width:640px) {
+            padding: .5em;
+            font-size: 1.2rem;
+            margin: .25em 0;
+
+        }
+    }
+}
+.spacer{
+    height: 9em; // 3em * 2 for header's margin, 3 em for lettering
+}
+.overlay{
+    pointer-events: none;
+    opacity: 0;
+    background: var(--c-texto);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: .3s ease opacity;
+    &.active{
+        opacity: .3;
+    }
+}

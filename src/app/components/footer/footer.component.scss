@@ -1,0 +1,26 @@
+@import 'mixins';
+
+.footer {
+    @include wrap(95%, 1500px, center);
+    margin: 12em auto;
+    &__cont {
+    }
+    &__grid {
+        @include grid(5vw, 6,1);
+
+        @media screen and (max-width:640px) {
+            @include grid(20%, 3, 2);
+            
+        }
+    }
+    &__celda {
+        @include flex(row, nowrap, center, center);
+    }
+    &__img {
+        max-width: 5em;
+        filter: contrast(.2);
+        @media (prefers-color-scheme: dark) {
+            filter: invert(1) contrast(.5);
+        }
+    }
+}
