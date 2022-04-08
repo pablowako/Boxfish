@@ -10,7 +10,7 @@ export class AppComponent implements OnInit{
   
   title = 'Boxfish';
   
-
+  mousePosition : string = ""
   
   constructor(private dataService : DataService){
   }
@@ -33,6 +33,6 @@ export class AppComponent implements OnInit{
     this.dataService.getOS()
   }
   mousePos(e : MouseEvent):void{
-    console.log(e.clientX, e.clientY)
+    this.mousePosition = `La posición del ratón es ${e.clientX}, ${e.clientY}`
   }
 }

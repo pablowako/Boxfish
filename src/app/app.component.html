@@ -1,4 +1,6 @@
-<app-header (mousemove)="mousePos($event)"></app-header>
-<router-outlet></router-outlet>
-
-<app-footer (mousemove)="mousePos($event)"></app-footer>
+<div class="mousepos" (mousemove)="mousePos($event)">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+</div>
+    

@@ -46,7 +46,7 @@ export class DataService {
   
   public getIP() : any{
 
-    this.headers = this.headers.set('Content-Type', 'application/json; charset=utf-8');
+    this.headers = this.headers.set('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8');
 
     return this.httpClient.get("http://api.ipify.org/?format=json",{headers: this.headers});
   }
