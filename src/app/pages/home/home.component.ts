@@ -12,5 +12,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+  mousePos(e : MouseEvent):void{
+    console.log(e.clientX, e.clientY)
+  }
 
 }

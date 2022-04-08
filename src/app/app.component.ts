@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { DataService } from './services/data.service';
 
 @Component({
@@ -10,6 +10,8 @@ export class AppComponent implements OnInit{
   
   title = 'Boxfish';
   
+
+  
   constructor(private dataService : DataService){
   }
 
@@ -17,12 +19,20 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
   this.getIP()
+  this.getOS()
   }
 
   getIP() :void{
     this.dataService.getIP().subscribe((ans:any)=>{
       this.ip = ans.ip
-      console.log(this.ip)
+      console.log('Tu dirección IP es: ' + this.ip)
     })
+  }
+  getOS() : void{
+    console.log(navigator.userAgent)
+    this.dataService.getOS()
+  }
+  mousePos(e : MouseEvent):void{
+    console.log(e.clientX, e.clientY)
   }
 }
