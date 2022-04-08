@@ -41,15 +41,13 @@ export class DataService {
   os : string = navigator.userAgent
   cs : any
 
-
   constructor(private httpClient : HttpClient) {}
   
   public getIP() : any{
-
     this.headers = this.headers.set('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8');
-
     return this.httpClient.get("http://api.ipify.org/?format=json",{headers: this.headers});
   }
+
   public getOS():any{
     for (let id in this.clientStrings) {
       this.cs = this.clientStrings[id];
@@ -59,4 +57,5 @@ export class DataService {
     }
     }
   }
+
 }

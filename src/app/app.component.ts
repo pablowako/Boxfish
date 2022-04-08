@@ -20,6 +20,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
   this.getIP()
   this.getOS()
+  setInterval(()=>this.logPos(), 1000)
   }
 
   getIP() :void{
@@ -33,6 +34,10 @@ export class AppComponent implements OnInit{
     this.dataService.getOS()
   }
   mousePos(e : MouseEvent):void{
-    this.mousePosition = `La posición del ratón es ${e.clientX}, ${e.clientY}`
+    this.mousePosition = `La posición del ratón es x=${e.clientX}, y=${e.clientY}`
+  }
+  logPos():void{
+    console.log(this.mousePosition)
+    
   }
 }
