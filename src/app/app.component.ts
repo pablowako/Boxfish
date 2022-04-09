@@ -10,7 +10,10 @@ export class AppComponent implements OnInit{
   
   title = 'Boxfish';
   
-  mousePosition : string = ""
+  mousePosition : string = "Aún no has movido el ratón en la ventana"
+  startTime : Date = new Date
+  currTime : Date = new Date
+  timeDiff : number = 0
   
   constructor(private dataService : DataService){
   }
@@ -20,7 +23,9 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
   this.getIP()
   this.getOS()
-  setInterval(()=>this.logPos(), 1000)
+  // setInterval(()=>this.logPos(), 1000)
+  // setInterval(()=>this.logTime(), 1000)
+  
   }
 
   getIP() :void{
@@ -39,5 +44,10 @@ export class AppComponent implements OnInit{
   logPos():void{
     console.log(this.mousePosition)
     
+  }
+  logTime():void{
+    this.currTime = new Date
+    this.timeDiff = Math.floor((this.currTime.getTime()-this.startTime.getTime())/1000)
+    this.timeDiff<60 ? console.log(`La ventana lleva ${this.timeDiff} segundos abierta`) : console.log(`La ventana lleva ${Math.floor(this.timeDiff/60)} minutos y ${this.timeDiff%60} segundos abierta`)
   }
 }
