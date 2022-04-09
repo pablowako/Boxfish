@@ -16,6 +16,8 @@
         // max-width: 50%;
     }
     &__section {
+        animation: fade-in-left 2s;
+        animation-fill-mode: both;
     }
     &__h2 {
         font-size: 3.5em;
@@ -34,5 +36,7 @@
         font-weight: 600;
     }
     &__img {
+        animation: fade-in-right 1.5s .5s;
+        animation-fill-mode: both;
     }
 }

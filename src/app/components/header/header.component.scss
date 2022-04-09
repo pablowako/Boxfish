@@ -41,6 +41,7 @@
     &__logo {
         @include flex(row, nowrap, flex-start, center);
         margin-right: 3rem;
+        cursor: pointer;
     }
     &__svg {
         width: 4rem;
@@ -186,7 +187,7 @@
             content: "";
             width: 0%;
             position: absolute;
-            bottom: 0;
+            bottom: .5em;
             left: 0;
             height: 2px;
             background-color: var(--c-acento-1);
@@ -219,5 +220,52 @@
     transition: .3s ease opacity;
     &.active{
         opacity: .3;
+    }
+}
+.darkmode{
+    position: absolute;
+    top: 5rem;
+    right: 2.5vw;
+    // background-color: red;
+    width: 9rem;
+    height: 4rem;
+    font-size: .75rem;
+    z-index: 5;
+    @include flex(row, nowrap, center, center);
+    &.active{
+        .darkmode__bg{
+            background-color: var(--c-subtexto);
+        }
+        .darkmode__toggle{
+            transform: translatex(1em);
+        }
+    }
+    
+    &__text{
+        margin-right: .5em;
+    }
+    &__bg{
+        width: 5em;
+        height: 3em;
+        border-radius: 1.5em;
+        background-color: var(--c-subtexto);
+        // border: 2px var(--c-acento-1) solid;
+        transition: .3s ease all;
+        @include flex(row, nowrap, center, center);
+    }
+    &__toggle{
+        border: 2px var(--c-fondo) solid;
+        width: calc(3em - 4px);
+        height: calc(3em - 4px);
+        border-radius: 50%;
+        background-color: var(--c-acento-1);
+        transform: translatex((-1em));
+        box-shadow: #00000066 0px 0px 2px;
+        transition: ease-in-out .3s all;
+        padding: .5em;
+        @include flex(row, nowrap, center, center);
+        svg{
+            fill: var(--c-fondo);
+        }
     }
 }

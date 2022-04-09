@@ -21,12 +21,16 @@
     }
     &__img {
         max-width: 5em;
+        transition: .3s ease all;
+        filter: contrast(.2);
+        &:hover{
+            filter: contrast(.9);
+            transform: scale(.9);
+        }
         @media screen and (max-width:640px) {
             max-width: 10em;
         }
-        filter: contrast(.2);
-        @media (prefers-color-scheme: dark) {
-            filter: invert(1) contrast(.5);
-        }
+
+        
     }
 }

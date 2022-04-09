@@ -13,13 +13,14 @@
   }
     
   /* Modo oscuro */
-  @media (prefers-color-scheme: dark) {
-    :root{
-        --c-texto         : #fff;
-        --c-fondo         : #333;
+  // @media (prefers-color-scheme: dark) {
+  //   :root{
+  //       --c-texto         : #fff;
+  //       --c-fondo         : #333;
+  //       --c-subtexto      : #ccc;
 
-    }
-  }
+  //   }
+  // }
 
   * {
     margin: 0;
@@ -105,4 +106,34 @@
     font-smooth: always;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: .3s ease all;
+  }
+
+  @keyframes fade-in-right {
+    from{
+      transform: translateX(30%);
+      opacity: 0;
+    }
+    to{
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in-left {
+    from{
+      transform: translateX(-30%);
+      opacity: 0;
+    }
+    to{
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in {
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
   }

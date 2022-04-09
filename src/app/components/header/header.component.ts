@@ -17,9 +17,11 @@ export class HeaderComponent implements OnInit {
   ]
 
   isMenuShown : boolean = false
-  isMenuOpen : boolean = false
-  windowSize : number = 0
-  
+  isMenuOpen  : boolean = false
+  windowSize  : number  = 0
+  isDark      : boolean  = false
+  test        : string | null = "false"
+
   constructor() { 
     this.onResize();
     
@@ -31,11 +33,30 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('darkMode')){
+      this.test = localStorage.getItem('darkMode')
+      this.test === "true" ? this.isDark = true : this.isDark = false
+      this.changeDark()
+    }else{
+      localStorage.setItem('darkMode', "false")
+    }
   }
 
 
-  toggleMenu(){
+  toggleMenu() :void {
     this.isMenuOpen = !this.isMenuOpen
+  }
+
+  toggleDark() :void {
+    this.isDark = !this.isDark
+    this.changeDark()
+    this.isDark ? localStorage.setItem('darkMode', "true") : localStorage.setItem('darkMode', "false")
+  }
+  changeDark() :void {
+    this.isDark ? document.documentElement.style.setProperty('--c-fondo', '#333') : document.documentElement.style.setProperty('--c-fondo', '#fff')
+    this.isDark ? document.documentElement.style.setProperty('--c-texto', '#fff') : document.documentElement.style.setProperty('--c-texto', '#333')
+    this.isDark ? document.documentElement.style.setProperty('--c-subtexto', '#e5e5e5') : document.documentElement.style.setProperty('--c-subtexto', '#999')
+    
   }
 
 }

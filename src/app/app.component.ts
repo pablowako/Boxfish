@@ -23,8 +23,8 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
   this.getIP()
   this.getOS()
-  // setInterval(()=>this.logPos(), 1000)
-  // setInterval(()=>this.logTime(), 1000)
+  setInterval(()=>this.logPos(), 1000)
+  setInterval(()=>this.logTime(), 1000)
   
   }
 
