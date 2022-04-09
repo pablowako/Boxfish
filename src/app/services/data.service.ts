@@ -41,6 +41,10 @@ export class DataService {
   os : string = navigator.userAgent
   cs : any
 
+  lat : any = "test"
+  long : any= "test"
+  APIkey : string = "0909a3a36a4c2098a60c8631a9fb3707"
+
   constructor(private httpClient : HttpClient) {}
   
   public getIP() : any{
@@ -56,6 +60,31 @@ export class DataService {
         break;
     }
     }
+  }
+
+  successPos(pos : any) {
+    this.lat = pos.coords.latitude
+    this.long = pos.coords.longitude
+  }
+
+  errorPos(pos:any){
+    // console.log(pos)
+  }
+
+  getLocation() : any {
+    // if(navigator.geolocation){
+      // console.log("denttro")
+      navigator.geolocation.getCurrentPosition(this.successPos, this.errorPos) 
+      this.reverseGeo()
+    // }else{
+    //   console.log("Error de geolocalización")
+    // }
+  }
+  
+
+  reverseGeo() : any{    
+    console.log("LATLONG")
+    // return this.httpClient.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${this.lat}&lon=${this.long}&limit=1&appid=${this.APIkey}`)
   }
 
   // var options = {
@@ -80,3 +109,7 @@ export class DataService {
   // navigator.geolocation.getCurrentPosition(success, error, options);
   
 }
+function errorPos(successPos: (pos: any) => void, errorPos: any) {
+  throw new Error('Function not implemented.');
+}
+

@@ -23,9 +23,11 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
   this.getIP()
   this.getOS()
-  setInterval(()=>this.logPos(), 1000)
-  setInterval(()=>this.logTime(), 1000)
-  
+  // setInterval(()=>this.logPos(), 1000)
+  // setInterval(()=>this.logTime(), 1000)
+  this.dataService.getLocation().subscribe((response: any)=>{
+    console.log(response)
+  })
   }
 
   getIP() :void{
@@ -34,17 +36,20 @@ export class AppComponent implements OnInit{
       console.log('Tu dirección IP es: ' + this.ip)
     })
   }
+
   getOS() : void{
     console.log(navigator.userAgent)
     this.dataService.getOS()
   }
+
   mousePos(e : MouseEvent):void{
     this.mousePosition = `La posición del ratón es x=${e.clientX}, y=${e.clientY}`
   }
+  
   logPos():void{
     console.log(this.mousePosition)
-    
   }
+
   logTime():void{
     this.currTime = new Date
     this.timeDiff = Math.floor((this.currTime.getTime()-this.startTime.getTime())/1000)
