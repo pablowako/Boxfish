@@ -58,9 +58,9 @@
 </ul>
 <aside class="overlay" [ngClass]="{'active': isMenuOpen}"></aside>
 <aside (click)="toggleDark()" [ngClass]="{'active':isDark}" class="darkmode">
-    <span class="darkmode__text">
+    <!-- <span class="darkmode__text">
         Dark mode:
-    </span>
+    </span> -->
     <div class="darkmode__bg">
         <div class="darkmode__toggle">
             <svg *ngIf="!isDark" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
