@@ -84,7 +84,7 @@
                 height: 1px;
                 background: var(--c-linea);
                 position: absolute;
-                bottom: 0;
+                bottom: .5em;
                 left: 0;
             }
             & .contact__li{
@@ -121,7 +121,7 @@
             content: "";
             width: 0%;
             position: absolute;
-            bottom: 0;
+            bottom: .5em;
             left: 0;
             height: 2px;
             background-color: var(--c-acento-1);
@@ -202,6 +202,9 @@
             padding: .5em;
             font-size: 1.2rem;
             margin: .25em 0;
+            &::after{
+                bottom: 0;
+            }
 
         }
     }
@@ -241,6 +244,9 @@
         .darkmode__toggle{
             transform: translatex(1em);
         }
+    }
+    @media screen and (max-width:640px) {
+        top: calc(100vh - 5rem);
     }
     
     &__text{
