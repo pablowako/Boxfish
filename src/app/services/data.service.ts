@@ -41,7 +41,7 @@ export class DataService {
   ];
   result : string = ""
 
-  //Operating system vars
+  //Operating system vars --- I'll be using 'navigator.userAgent' instead of 'navigator.userAgentData' because it provides far more information and is more robust (NAData doesn't work on firefox).
   os      : string = navigator.userAgent
   cs!     : clientStrings
 
@@ -62,7 +62,7 @@ export class DataService {
   public getOS():void{
     for (let id in this.clientStrings) {
       this.cs = this.clientStrings[id];
-      if (this.cs.r.test(navigator.userAgent)) {
+      if (this.cs.r.test(this.os)) {
         this.result = this.cs.s
         break;
     }

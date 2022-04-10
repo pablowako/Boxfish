@@ -27,27 +27,37 @@ export class AppComponent implements OnInit{
 
   city          : string  = ""
   country       : string  = ""
+  
   constructor(private dataService : DataService){
   }
 
   
 
   ngOnInit(): void {
+    
+    // Cleaner output to console. The alternative quickly got cluttered and looked ugly.
+    // Didn't manage to get "process" to work properly, had to use a workaround. 
+    // Still shows your location "once" on page load, and simply updates the time and mouse position
+    
     this.getLoc()
     this.getIP()
     this.getOS()
-
-    // Cleaner output to console. The alternative quickly got cluttered and looked ugly.
-    // Didn't manage to get "process" to work properly, had to use a workaround.
-    
     setInterval(()=>{
       console.clear();
       if(this.ip){console.log('Tu dirección IP es: ' + this.ip)}
       if(this.dataService.city){console.log(`Estás en ${this.dataService.city}, ${this.dataService.country}`)}
       console.log("El sistema operativo es " + this.dataService.result)
-      this.logTime(); 
       this.logPos();
+      this.logTime(); 
     }, 1000)
+
+    // Version that doesn't clear the console (warning: clutter):
+
+    // this.getLoc()
+    // this.getIP()
+    // this.getOS()
+    // setInterval(()=>this.logPos(), 1000)
+    // setInterval(()=>this.logTime(), 1000)
   }
 
   getLoc() :void {
@@ -89,11 +99,12 @@ export class AppComponent implements OnInit{
       : this.minsName = "minutos"
     
     this.timeDiff<60
-      ? console.log(`La ventana lleva ${this.secs} ${this.secsName} abierta`)
-      : console.log(`La ventana lleva ${this.mins} ${this.minsName} y ${this.secs} ${this.secsName} abierta`)
+      ? console.warn(`La ventana lleva ${this.secs} ${this.secsName} abierta`)
+      : console.warn(`La ventana lleva ${this.mins} ${this.minsName} y ${this.secs} ${this.secsName} abierta`)
 
     
 
+      
     // Previous approach to the "segundo vs segundos" issue:
 
     // this.timeDiff%60 === 1 
