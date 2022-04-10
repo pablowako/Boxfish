@@ -24,9 +24,9 @@
     &__img {
         max-width: 5em;
         transition: .3s ease all;
-        filter: contrast(.2);
+        filter: var(--f-svg);
         &:hover{
-            filter: contrast(.9);
+            filter: var(--f-svg-hover);
             transform: scale(.9);
         }
         @media screen and (max-width:640px) {

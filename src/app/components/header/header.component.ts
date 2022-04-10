@@ -44,10 +44,28 @@ export class HeaderComponent implements OnInit {
     this.changeDark()
     this.isDark ? localStorage.setItem('darkMode', "true") : localStorage.setItem('darkMode', "false")
   }
-  changeDark() :void {
-    this.isDark ? document.documentElement.style.setProperty('--c-fondo', '#333') : document.documentElement.style.setProperty('--c-fondo', '#fff')
-    this.isDark ? document.documentElement.style.setProperty('--c-texto', '#fff') : document.documentElement.style.setProperty('--c-texto', '#333')
-    this.isDark ? document.documentElement.style.setProperty('--c-subtexto', '#e5e5e5') : document.documentElement.style.setProperty('--c-subtexto', '#999')
+  changeDark() :void { // decided to change ternaries to a single if, as well as use one 'cssText' instead of individual 'setProperty's to cut down on clutter.
+    if(this.isDark){
+      document.documentElement.style.cssText= `
+      --c-fondo : #333;
+      --c-texto : #fff;
+      --c-subtexto : #e5e5e5;
+      --f-svg : invert(1) contrast(.3);
+      --f-svg-hover : invert(1) contrast(1);
+
+
+      `
+  
+    }else{
+      document.documentElement.style.cssText=`
+      --c-fondo : #fff;
+      --c-texto : #333;
+      --c-subtexto : #999;
+      --f-svg : contrast(.3);
+      --f-svg-hover : contrast(1);
+      `
+
+    }
     
   }
 
