@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { ErrorHandler, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { clientStrings } from '../interfaces/data';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ export class DataService {
   
   headers : any = new HttpHeaders()
 
-  clientStrings = [
+  clientStrings : clientStrings[] = [
     {s:'Windows 10', r:/(Windows 10.0|Windows NT 10.0)/},
     {s:'Windows 8.1', r:/(Windows 8.1|Windows NT 6.3)/},
     {s:'Windows 8', r:/(Windows 8|Windows NT 6.2)/},
@@ -38,12 +40,16 @@ export class DataService {
     {s:'Search Bot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
   ];
 
-  os : string = navigator.userAgent
-  cs : any
+  //Operating system vars
+  os      : string = navigator.userAgent
+  cs!     : clientStrings
 
-  lat : any = "test"
-  long : any= "test"
-  APIkey : string = "0909a3a36a4c2098a60c8631a9fb3707"
+  //Geolocation vars
+  lat     : number = 0
+  long    : number = 0
+  city    : string = "Not yet known"
+  country : string = "Not yet known"
+  APIkey  : string = "0909a3a36a4c2098a60c8631a9fb3707"
 
   constructor(private httpClient : HttpClient) {}
   
@@ -52,7 +58,7 @@ export class DataService {
     return this.httpClient.get("http://api.ipify.org/?format=json",{headers: this.headers});
   }
 
-  public getOS():any{
+  public getOS():void{
     for (let id in this.clientStrings) {
       this.cs = this.clientStrings[id];
       if (this.cs.r.test(navigator.userAgent)) {
@@ -62,54 +68,40 @@ export class DataService {
     }
   }
 
-  successPos(pos : any) {
-    this.lat = pos.coords.latitude
-    this.long = pos.coords.longitude
+  errorPos(err : GeolocationPositionError){
+    console.log("Error de geolocalización: " + err.message)
   }
 
-  errorPos(pos:any){
-    // console.log(pos)
+  reverseGeo() : Observable<object>{    
+    this.headers = this.headers.set('Content-Type' , 'application/x-www-form-urlencoded; charset=UTF-8')
+    return this.httpClient.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${this.lat}&lon=${this.long}&limit=1&appid=${this.APIkey}`,{headers: this.headers})
   }
 
-  getLocation() : any {
-    // if(navigator.geolocation){
-      // console.log("denttro")
-      navigator.geolocation.getCurrentPosition(this.successPos, this.errorPos) 
-      this.reverseGeo()
-    // }else{
-    //   console.log("Error de geolocalización")
-    // }
+  getLocation() : void {
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition((pos) => { 
+        
+        //Anon function inside callback to avoid scope issues
+        this.lat = pos.coords.latitude
+        this.long = pos.coords.longitude;
+        console.log(`Latitud: ${this.lat}`)
+        console.log(`Longitud: ${this.long}`)
+        
+        //Reverse geocoding
+        this.reverseGeo().subscribe((ans : any )=>{
+          this.city = ans[0].local_names.es
+          this.country = ans[0].country
+          console.log(`Estás en ${this.city}, ${this.country}`)
+        })
+      }, this.errorPos, {timeout : 5000}) 
+    }else{
+      console.log("Error: No geolocation available")
+    }
   }
   
+  
 
-  reverseGeo() : any{    
-    console.log("LATLONG")
-    // return this.httpClient.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${this.lat}&lon=${this.long}&limit=1&appid=${this.APIkey}`)
-  }
 
-  // var options = {
-  //   enableHighAccuracy: true,
-  //   timeout: 5000,
-  //   maximumAge: 0
-  // };
-  
-  // function success(pos) {
-  //   var crd = pos.coords;
-  
-  //   console.log('Your current position is:');
-  //   console.log(`Latitude : ${crd.latitude}`);
-  //   console.log(`Longitude: ${crd.longitude}`);
-  //   console.log(`More or less ${crd.accuracy} meters.`);
-  // }
-  
-  // function error(err) {
-  //   console.warn(`ERROR(${err.code}): ${err.message}`);
-  // }
-  
-  // navigator.geolocation.getCurrentPosition(success, error, options);
-  
 }
-function errorPos(successPos: (pos: any) => void, errorPos: any) {
-  throw new Error('Function not implemented.');
-}
+
 
