@@ -20,22 +20,14 @@ export class HeaderComponent implements OnInit {
   isMenuOpen  : boolean = false
   windowSize  : number  = 0
   isDark      : boolean  = false
-  test        : string | null = "false"
+  localDark   : string | null = "false"
 
-  constructor() { 
-    this.onResize();
-    
-  }
-  
-  @HostListener('window:resize', ['$event'])
-  onResize(event?:any) {
-    this.windowSize = window.innerWidth;
-  }
+  constructor() {}
 
   ngOnInit(): void {
     if(localStorage.getItem('darkMode')){
-      this.test = localStorage.getItem('darkMode')
-      this.test === "true" ? this.isDark = true : this.isDark = false
+      this.localDark = localStorage.getItem('darkMode')
+      this.localDark === "true" ? this.isDark = true : this.isDark = false
       this.changeDark()
     }else{
       localStorage.setItem('darkMode', "false")
