@@ -141,6 +141,7 @@
         color: var(--c-acento-1);
         font-weight: 500;
         font-size: 1.5rem;
+        cursor: pointer;
         @media screen and (max-width: 640px) {
             @include flex-center();
 
@@ -231,6 +232,7 @@
     height: 4rem;
     font-size: .75rem;
     z-index: 5;
+    cursor: pointer;
     @include flex(row, nowrap, center, center);
     &.active{
         .darkmode__bg{
