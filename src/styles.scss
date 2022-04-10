@@ -109,6 +109,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: .3s ease all;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   @keyframes fade-in-right {
@@ -139,3 +141,9 @@
       opacity: 1;
     }
   }
+
+  //  Troubleshooting: 
+
+  // *{
+  //   outline: red 1px solid;
+  // }

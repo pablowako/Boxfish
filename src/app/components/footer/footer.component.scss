@@ -2,9 +2,10 @@
 
 .footer {
     @include wrap(95%, 1500px, center);
-    margin: 10vw auto;
+    margin: 5vw auto;
     @media screen and (max-width:640px) {
         width: 90%;
+        margin: 8vw auto;
     }
     &__cont {
     }
@@ -27,7 +28,10 @@
         filter: var(--f-svg);
         &:hover{
             filter: var(--f-svg-hover);
-            transform: scale(.9);
+            transform: scale(.95);
+        }
+        &:active{
+            transform: scale(.85);
         }
         @media screen and (max-width:640px) {
             max-width: 10em;

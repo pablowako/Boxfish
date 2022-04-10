@@ -42,9 +42,14 @@
         @include flex(row, nowrap, flex-start, center);
         margin-right: 3rem;
         cursor: pointer;
+        &:hover .header__svg{
+            transform: rotate(30deg);
+        }
     }
     &__svg {
         width: 4rem;
+        transition: ease all .5s;
+        
     }
     &__h1 {
         margin: 0 .5em;
@@ -237,6 +242,10 @@
     z-index: 5;
     cursor: pointer;
     @include flex(row, nowrap, center, center);
+    transition: transform .5s cubic-bezier(.36,2,.72,.57);
+    &:hover{
+        transform: scale(1.1);
+    }
     &.active{
         .darkmode__bg{
             background-color: var(--c-subtexto);
@@ -245,9 +254,12 @@
             transform: translatex(1em);
         }
     }
-    @media screen and (max-width:640px) {
-        top: calc(100vh - 5rem);
-    }
+
+    // Still undecided as to whether this looks good or not
+    // @media screen and (max-width:640px) {
+    //     top: calc(100vh - 5rem);
+    //     opacity: .9;
+    // }
     
     &__text{
         margin-right: .5em;
