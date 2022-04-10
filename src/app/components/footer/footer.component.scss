@@ -18,6 +18,8 @@
     }
     &__celda {
         @include flex(row, nowrap, center, center);
+        animation: fade-in 1s ease;
+        animation-fill-mode: both;
     }
     &__img {
         max-width: 5em;

@@ -1,7 +1,7 @@
 <div class="footer">
     <div class="footer__cont">
         <div class="footer__grid">
-            <a *ngFor="let item of footerItems" [href]="item.url" [title]="item.title" class="footer__celda">
+            <a *ngFor="let item of footerItems; let i = index" [href]="item.url" [title]="item.title" class="footer__celda" [ngStyle]="{'animation-delay': i*0.2 + 's'}">
                 <img [src]="item.path" [alt]="item.title" class="footer__img">
             </a>
         </div>
