@@ -37,6 +37,9 @@ export class AppComponent implements OnInit{
     this.getIP()
     this.getOS()
 
+    // Cleaner output to console. The alternative quickly got cluttered and looked ugly.
+    // Didn't manage to get "process" to work properly, had to use a workaround.
+    
     setInterval(()=>{
       console.clear();
       if(this.ip){console.log('Tu dirección IP es: ' + this.ip)}
@@ -52,7 +55,7 @@ export class AppComponent implements OnInit{
   }
 
   getIP() :void{
-    this.dataService.getIP().subscribe((ans:any)=>{
+    this.dataService.getIP().subscribe((ans:any)=>{ // ANY!!
       this.ip = ans.ip
     })
   }
