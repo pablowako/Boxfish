@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit() :void {
     if(localStorage.getItem('darkMode')){
       this.localDark = localStorage.getItem('darkMode')
       this.localDark === "true" ? this.isDark = true : this.isDark = false
@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit {
     this.changeDark()
     this.isDark ? localStorage.setItem('darkMode', "true") : localStorage.setItem('darkMode', "false")
   }
+
   changeDark() :void { // decided to change ternaries to a single if, as well as use one 'cssText' instead of individual 'setProperty's to cut down on clutter.
     if(this.isDark){
       document.documentElement.style.cssText= `
@@ -52,10 +53,7 @@ export class HeaderComponent implements OnInit {
       --c-subtexto : #e5e5e5;
       --f-svg : invert(1) contrast(.3);
       --f-svg-hover : invert(1) contrast(1);
-
-
       `
-  
     }else{
       document.documentElement.style.cssText=`
       --c-fondo : #fff;
@@ -64,7 +62,6 @@ export class HeaderComponent implements OnInit {
       --f-svg : contrast(.3);
       --f-svg-hover : contrast(1);
       `
-
     }
     
   }
