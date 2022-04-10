@@ -9,12 +9,12 @@ import { Footer } from 'src/app/interfaces/menu';
 export class FooterComponent implements OnInit {
 
   footerItems : Footer[]= [
-    {title:"LinkedIn", url:"https://www.linkedin.com", path:"assets/images/linkedin.png"},
-    {title:"Vans", url:"https://www.vans.es/", path:"assets/images/vans.png"},
+    {title:"LinkedIn", url:"https://www.linkedin.com", path:"assets/svgs/linkedinLogo.svg"},
+    {title:"Vans", url:"https://www.vans.es/", path:"assets/svgs/vansLogo.svg"},
     {title:"YK", url:"#", path:"assets/svgs/YK.svg"},
-    {title:"Fazua", url:"https://fazua.com/en/", path:"assets/svgs/fazua.svg"},
-    {title:"Twitter", url:"https://twitter.com/", path:"assets/svgs/twitter.svg"},
-    {title:"Apple", url:"https://www.apple.com/", path:"assets/images/apple.png"},
+    {title:"Fazua", url:"https://fazua.com/en/", path:"assets/svgs/fazuaLogo.svg"},
+    {title:"Twitter", url:"https://twitter.com/", path:"assets/svgs/twitterLogo.svg"},
+    {title:"Apple", url:"https://www.apple.com/", path:"assets/svgs/appleLogo.svg"},
   ]
 
   constructor() { }
