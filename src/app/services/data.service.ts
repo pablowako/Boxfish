@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ErrorHandler, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { clientStrings } from '../interfaces/data';
 
@@ -8,7 +8,7 @@ import { clientStrings } from '../interfaces/data';
 })
 export class DataService {
   
-  headers : any = new HttpHeaders()
+  headers : HttpHeaders = new HttpHeaders()
 
   clientStrings : clientStrings[] = [
     {s:'Windows 10', r:/(Windows 10.0|Windows NT 10.0)/},
@@ -39,6 +39,7 @@ export class DataService {
     {s:'OS/2', r:/OS\/2/},
     {s:'Search Bot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
   ];
+  result : string = ""
 
   //Operating system vars
   os      : string = navigator.userAgent
@@ -47,7 +48,7 @@ export class DataService {
   //Geolocation vars
   lat     : number = 0
   long    : number = 0
-  city    : string = "Not yet known"
+  city    : string = ""
   country : string = "Not yet known"
   APIkey  : string = "0909a3a36a4c2098a60c8631a9fb3707"
 
@@ -62,7 +63,7 @@ export class DataService {
     for (let id in this.clientStrings) {
       this.cs = this.clientStrings[id];
       if (this.cs.r.test(navigator.userAgent)) {
-        console.log("El sistema operativo es " + this.cs.s);
+        this.result = this.cs.s
         break;
     }
     }
@@ -91,7 +92,7 @@ export class DataService {
         this.reverseGeo().subscribe((ans : any )=>{
           this.city = ans[0].local_names.es
           this.country = ans[0].country
-          console.log(`Estás en ${this.city}, ${this.country}`)
+          
         })
       }, this.errorPos, {timeout : 5000}) 
     }else{
@@ -99,7 +100,7 @@ export class DataService {
     }
   }
   
-  
+
 
 
 }

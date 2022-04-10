@@ -1,5 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from './services/data.service';
+
 
 @Component({
   selector: 'app-root',
@@ -21,18 +22,29 @@ export class AppComponent implements OnInit{
   mins          : number  = 0
 
   ip            : string  = ""
+  
+  os            : string  = ""
 
+  city          : string  = ""
+  country       : string  = ""
   constructor(private dataService : DataService){
   }
 
   
 
   ngOnInit(): void {
+    this.getLoc()
     this.getIP()
     this.getOS()
-    this.getLoc()
-    setInterval(()=>this.logPos(), 1000)
-    setInterval(()=>this.logTime(), 1000)
+
+    setInterval(()=>{
+      console.clear();
+      if(this.ip){console.log('Tu dirección IP es: ' + this.ip)}
+      if(this.dataService.city){console.log(`Estás en ${this.dataService.city}, ${this.dataService.country}`)}
+      console.log("El sistema operativo es " + this.dataService.result)
+      this.logTime(); 
+      this.logPos();
+    }, 1000)
   }
 
   getLoc() :void {
@@ -42,13 +54,13 @@ export class AppComponent implements OnInit{
   getIP() :void{
     this.dataService.getIP().subscribe((ans:any)=>{
       this.ip = ans.ip
-      console.log('Tu dirección IP es: ' + this.ip)
     })
   }
 
   getOS() : void{
     console.log(navigator.userAgent)
     this.dataService.getOS()
+    this.os = this.dataService.os
   }
 
   mousePos(e : MouseEvent) :void{
@@ -77,7 +89,8 @@ export class AppComponent implements OnInit{
       ? console.log(`La ventana lleva ${this.secs} ${this.secsName} abierta`)
       : console.log(`La ventana lleva ${this.mins} ${this.minsName} y ${this.secs} ${this.secsName} abierta`)
 
-      
+    
+
     // Previous approach to the "segundo vs segundos" issue:
 
     // this.timeDiff%60 === 1 
