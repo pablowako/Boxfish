@@ -44,6 +44,7 @@ export class AppComponent implements OnInit{
     this.getOS()
     setInterval(()=>{
       console.clear();
+      console.log(navigator.userAgent)
       if(this.ip){console.log('Tu dirección IP es: ' + this.ip)}
       if(this.dataService.city){console.log(`Estás en ${this.dataService.city}, ${this.dataService.country}`)}
       console.log("El sistema operativo es " + this.dataService.result)
